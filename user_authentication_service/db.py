@@ -74,4 +74,3 @@ class DB:
             if key not in columns:
                 return False
         return True
-    
