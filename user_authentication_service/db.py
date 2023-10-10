@@ -36,13 +36,4 @@ class DB:
         self._session.add(new_user)
         self._session.commit()
         return new_user
-
-if __name__ == "__main__":
-    db = DB()
-    new_user = db.add_user("example@example.com", "hashed_password")
-
-    # Check if user is an instance of the User class
-    if isinstance(new_user, User):
-        print("DB.add_user returns a user object: True")
-    else:
-        print("DB.add_user returns a user object: False")
+    
