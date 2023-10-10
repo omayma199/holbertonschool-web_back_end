@@ -31,25 +31,21 @@ class DB:
             self.__session = DBSession()
         return self.__session
     
-    def add_user(self, email: str, hashed_password: str) -> User:
-        """Add a new user to the database.
-
-        Args:
-            email (str): The email of the user.
-            hashed_password (str): The hashed password of the user.
-
-        Returns:
-            User: The User object representing the newly added user.
-        """
-        # Create a new User object with the provided email and hashed_password
+    def add_user(self, email: str, hashed_password: str):
         new_user = User(email=email, hashed_password=hashed_password)
-
-        # Add the new_user to the session (but not the database yet)
         self._session.add(new_user)
-
-        # Commit the session to persist the new_user to the database
         self._session.commit()
-
-        # Return the User object representing the newly added user
         return new_user
+
+if __name__ == "__main__":
+    db = DB()
+    new_user = db.add_user("example@example.com", "hashed_password")
+
+    # Printing the newly added user's details
+    print("User ID:", new_user.id)
+    print("Email:", new_user.email)
+    print("Hashed Password:", new_user.hashed_password)
+    print("Session ID:", new_user.session_id)
+    print("Reset Token:", new_user.reset_token)
+
     
