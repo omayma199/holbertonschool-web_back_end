@@ -41,11 +41,8 @@ if __name__ == "__main__":
     db = DB()
     new_user = db.add_user("example@example.com", "hashed_password")
 
-    # Printing the newly added user's details
-    print("User ID:", new_user.id)
-    print("Email:", new_user.email)
-    print("Hashed Password:", new_user.hashed_password)
-    print("Session ID:", new_user.session_id)
-    print("Reset Token:", new_user.reset_token)
-
-    
+    # Check if user is an instance of the User class
+    if isinstance(new_user, User):
+        print("DB.add_user returns a user object: True")
+    else:
+        print("DB.add_user returns a user object: False")
