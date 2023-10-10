@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 
 
-from user import User  # Assuming your User model is imported from user.py
+from user import User, Base  # Assuming your User model is imported from user.py
 
 class DB:
     """DB class
