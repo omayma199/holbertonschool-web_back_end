@@ -13,7 +13,7 @@ def measure_time(n: int, max_delay: int = 10) -> float:
     Measure the runtime
     """
     start_time = time()
- 
+
     # Measure the total execution time for wait_n(n, max_delay)
     wait_n(n, max_delay)
 
