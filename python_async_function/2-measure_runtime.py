@@ -2,10 +2,8 @@
 """
 Measure the runtime
 """
-import time
-
-
-wait_n = __import__('1-concurrent_coroutines').wait_n
+from time import time
+from wait_n import wait_n
 
 
 def measure_time(n: int, max_delay: int = 10) -> float:
@@ -23,4 +21,3 @@ def measure_time(n: int, max_delay: int = 10) -> float:
     total_time = end_time - start_time
     average_time_per_iteration = total_time / n
     return average_time_per_iteration
-
