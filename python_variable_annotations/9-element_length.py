@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+type an iterable object
+"""
+
+
 from typing import List, Tuple
 
 def element_length(lst: List[str]) -> List[Tuple[str, int]]:
