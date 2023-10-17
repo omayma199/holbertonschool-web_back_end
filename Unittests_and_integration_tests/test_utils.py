@@ -8,7 +8,6 @@ import unittest
 from parameterized import parameterized
 from utils import access_nested_map
 
-
 class TestAccessNestedMap(unittest.TestCase):
 
     @parameterized.expand([
@@ -28,7 +27,6 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(KeyError) as context:
             access_nested_map(nested_map, path)
         self.assertEqual(str(context.exception), expected_exception_message)
-
 
 if __name__ == '__main__':
     unittest.main()
