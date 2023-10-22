@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
+""" Basic Flask app, Basic Babel setup """
 from flask import Flask, render_template
 from flask_babel import Babel
-"""Basic Flask app
-"""
 
 
 app = Flask(__name__)
 babel = Babel(app)
-
+""" instantiate the Babel object """
 
 class Config:
     """
+    config class
     """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
@@ -18,7 +18,7 @@ class Config:
 
 
 app.config.from_object(Config)
-
+""" Use that class as config for Flask app """
 
 @app.route('/')
 def root():
