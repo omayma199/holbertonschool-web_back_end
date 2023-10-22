@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Basic Flask app, Basic Babel setup """
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
 
@@ -53,12 +53,17 @@ def get_user():
         return users[int(userId)]
     except Exception:
         return None
+    
+
+@app.before_request
+def before_request():
+    g.user = get_user()
 
 
 @app.route('/')
 def root():
     """ basic Flask app """
-    return render_template('4-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':
