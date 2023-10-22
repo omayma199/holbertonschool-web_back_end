@@ -8,6 +8,7 @@ app = Flask(__name__)
 babel = Babel(app)
 """ instantiate the Babel object """
 
+
 class Config:
     """
     config class
@@ -19,6 +20,7 @@ class Config:
 
 app.config.from_object(Config)
 """ Use that class as config for Flask app """
+
 
 @app.route('/')
 def root():
