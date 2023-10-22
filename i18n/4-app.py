@@ -28,7 +28,7 @@ def get_locale():
     Check if the 'locale' parameter is present in the request's query string
     """
     requested_locale = request.args.get('locale')
-    
+
     """
     If the requested locale is a supported language, return it
     """
