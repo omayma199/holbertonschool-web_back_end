@@ -16,31 +16,10 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 """Mock user database"""
-class Config:
-    """
-    config class
-    """
-    LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
-
-
-app.config.from_object(Config)
-""" Use that class as config for Flask app """
 
 
 @babel.localeselector
 def get_locale():
-    """
-    Check if the 'locale' parameter is present in the request's query string
-    """
-    requested_locale = request.args.get('locale')
-
-    """
-    If the requested locale is a supported language, return it
-    """
-    if requested_locale in app.config['LANGUAGES']:
-        return requested_locale
     """ to determine the best match with our supported languages """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
@@ -48,16 +27,25 @@ def get_locale():
 def get_user():
     """ returns a user dictionary or None
     if the ID cannot be found or if login_as was not passed """
-    try:
-        userId = request.args.get('login_as')
-        return users[int(userId)]
-    except Exception:
-        return None
+    user_id = request.args.get('login_as')
+    if user_id and user_id.isnumeric():
+        user_id = int(user_id)
+        user = users.get(user_id)
+        return user
+    return None
     
 
 @app.before_request
 def before_request():
     g.user = get_user()
+
+
+class Config:
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
+
+app.config.from_object(Config)
 
 
 @app.route('/')
