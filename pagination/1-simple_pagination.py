@@ -39,14 +39,17 @@ class Server:
         return (start_index, end_index)
     
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """
-        get page Simple pagination
-        """
-        assert isinstance(page, int) and isinstance(page_size, int)
-        assert page > 0 and page_size > 0
-        dataset = self.dataset()
-        start_index, end_index = self.index_range(page, page_size)
-        if end_index > len(dataset):
+        # Verify that both arguments are integers greater than 0
+        if not (isinstance(page, int) and isinstance(page_size, int) and page > 0 and page_size > 0):
             return []
-        return [list(dataset[row]) for row in range(start_index, end_index)]        
+
+        # Get the total number of rows in the dataset
+        total_rows = len(self.dataset())
+
+        # Calculate the start and end indexes using the index_range function
+        start_index, end_index = index_range(page, page_size)
+
+        # Check if the page is out of range
+        if start_index >= total_rows:
+            return []
     
