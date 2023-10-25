@@ -52,4 +52,7 @@ class Server:
         # Check if the page is out of range
         if start_index >= total_rows:
             return []
-    
+        # Slice the dataset to get the appropriate page
+        page_data = self.dataset()[start_index:end_index]
+
+        return page_data
