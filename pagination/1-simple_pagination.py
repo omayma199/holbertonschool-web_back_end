@@ -47,7 +47,7 @@ class Server:
         total_rows = len(self.dataset())
 
         # Calculate the start and end indexes using the index_range function
-        start_index, end_index = index_range(page, page_size)
+        start_index, end_index = self.index_range(page, page_size)
 
         # Check if the page is out of range
         if start_index >= total_rows:
