@@ -7,6 +7,7 @@ import math
 from typing import List, Tuple
 
 
+index_range = __import__('0-simple_helper_function').index_range
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -47,7 +48,7 @@ class Server:
         total_rows = len(self.dataset())
 
         # Calculate the start and end indexes using the index_range function
-        start_index, end_index = self.index_range(page, page_size)
+        start_index, end_index = index_range(page, page_size)
 
         # Check if the page is out of range
         if start_index >= total_rows:
