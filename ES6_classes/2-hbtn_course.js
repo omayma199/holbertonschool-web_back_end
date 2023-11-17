@@ -1,58 +1,46 @@
-class HolbertonCourse {
+export default class HolbertonCourse {
   constructor(name, length, students) {
-    this._name = this._validateString(name, 'name');
-    this._length = this._validateNumber(length, 'length');
-    this._students = this._validateStudents(students, 'students');
+    this.name = name;
+    this.length = length;
+    this.students = students;
   }
 
-  // Getter and setter for name
   get name() {
     return this._name;
   }
 
-  set name(newName) {
-    this._name = this._validateString(newName, 'name');
+  set name(name) {
+    if (typeof name === 'string') {
+      this._name = name;
+    } else {
+      throw new TypeError('Name must be a string');
+    }
   }
 
-  // Getter and setter for length
   get length() {
     return this._length;
   }
 
-  set length(newLength) {
-    this._length = this._validateNumber(newLength, 'length');
+  set length(length) {
+    if (typeof length === 'number') {
+      this._length = length;
+    } else {
+      throw new TypeError('Length must be a number');
+    }
   }
 
-  // Getter and setter for students
   get students() {
     return this._students;
   }
 
-  set students(newStudents) {
-    this._students = this._validateStudents(newStudents, 'students');
-  }
-
-  // Helper method to validate a string attribute
-  _validateString(value, attributeName) {
-    if (typeof value !== 'string') {
-      throw new TypeError(`${attributeName} must be a string`);
+  set students(students) {
+    if (
+      Array.isArray(students)
+      && students.every((s) => typeof s === 'string')
+    ) {
+      this._students = students;
+    } else {
+      throw new TypeError('Students must be an array of strings');
     }
-    return value;
-  }
-
-  // Helper method to validate a number attribute
-  _validateNumber(value, attributeName) {
-    if (typeof value !== 'number' || isNaN(value)) {
-      throw new TypeError(`${attributeName} must be a valid number`);
-    }
-    return value;
-  }
-
-  // Helper method to validate an array of strings for students
-  _validateStudents(value, attributeName) {
-    if (!Array.isArray(value) || !value.every((item) => typeof item === 'string')) {
-      throw new TypeError(`${attributeName} must be an array of strings`);
-    }
-    return value;
   }
 }
