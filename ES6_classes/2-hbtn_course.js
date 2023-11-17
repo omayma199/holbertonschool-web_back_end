@@ -56,12 +56,3 @@ class HolbertonCourse {
     return value;
   }
 }
-
-// Example usage:
-const course = new HolbertonCourse('Web Development', 12, ['Alice', 'Bob', 'Charlie']);
-console.log(course.name); // Output: Web Development
-console.log(course.length); // Output: 12
-console.log(course.students); // Output: ['Alice', 'Bob', 'Charlie']
-
-course.name = 'Data Science'; // Setting a new name
-console.log(course.name); // Output: Data Science
